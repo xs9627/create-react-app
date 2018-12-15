@@ -138,6 +138,7 @@ module.exports = function(webpackEnv) {
     // This means they will be the "root" imports that are included in JS bundle.
     entry: {
       main: [
+        isEnvDevelopment && paths.globalMocker,
         // Include an alternative client for WebpackDevServer. A client's job is to
         // connect to WebpackDevServer by a socket and get notified about changes.
         // When you save a file, the client will either apply hot updates (in case
@@ -257,7 +258,7 @@ module.exports = function(webpackEnv) {
       // Keep the runtime chunk seperated to enable long term caching
       // https://twitter.com/wSokra/status/969679223278505985
       runtimeChunk: {
-        name: entrypoint => `runtime-${entrypoint.name}`
+        name: 'runtime'
       }
     },
     resolve: {
@@ -650,6 +651,9 @@ module.exports = function(webpackEnv) {
           silent: true,
           formatter: typescriptFormatter,
         }),
+      !isEnvProduction && new webpack.ProvidePlugin({
+        'chrome': 'sinon-chrome'
+      })
     ].filter(Boolean),
     // Some libraries import Node modules but don't use them in the browser.
     // Tell Webpack to provide empty mocks for them so importing them works.
