@@ -50,6 +50,8 @@ const cssModuleRegex = /\.module\.css$/;
 const sassRegex = /\.(scss|sass)$/;
 const sassModuleRegex = /\.module\.(scss|sass)$/;
 
+const isPublishBuild = process.env.PUBLISH_BUILD === 'true';
+
 // This is the production and development configuration.
 // It is focused on developer experience, fast rebuilds, and a minimal bundle.
 module.exports = function(webpackEnv) {
@@ -661,5 +663,8 @@ module.exports = function(webpackEnv) {
     // Turn off performance processing because we utilize
     // our own hints via the FileSizeReporter
     performance: false,
+    externals: {
+      'Config': JSON.stringify(isPublishBuild ? require(paths.prodConfig) : require(paths.devConfig)),
+    }
   };
 };
