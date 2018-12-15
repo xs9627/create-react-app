@@ -1,6 +1,6 @@
 {
   "name": "react-scripts-chrome-extension",
-  "version": "2.1.1-rc.2",
+  "version": "2.1.1-rc.3",
   "description": "Configuration and scripts for Create React App.",
   "repository": "facebook/create-react-app",
   "license": "MIT",
@@ -64,6 +64,7 @@
     "react-dev-utils": "^6.1.1",
     "resolve": "1.8.1",
     "sass-loader": "7.1.0",
+    "sinon-chrome": "^2.3.2",
     "style-loader": "0.23.0",
     "terser-webpack-plugin": "1.1.0",
     "url-loader": "1.1.1",
@@ -74,8 +75,7 @@
   },
   "devDependencies": {
     "react": "^16.3.2",
-    "react-dom": "^16.3.2",
-    "sinon-chrome": "^2.3.2"
+    "react-dom": "^16.3.2"
   },
   "optionalDependencies": {
     "fsevents": "1.2.4"
